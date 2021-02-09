@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+interface inputProps {
+    initialValue: any,
+    onChange?: Function,
+}
+
+
 export const useInput = (initialValue: any) => {
   const [value, setValue] = useState(initialValue);
 
