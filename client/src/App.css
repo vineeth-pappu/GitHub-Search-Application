@@ -26,3 +26,34 @@ header {
     line-height: 24px;
     margin-top: 8px;
 }
+
+.filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.search-text-input {
+    width: 30%;
+    margin-right: 20px;
+}
+
+.search-text-input #search {
+    padding: 15px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #c7c7c7;
+    width: 100%;
+    color: gray;
+}
+
+.search-type-input #type {
+    padding: 15px;
+    font-size: 16px;
+    color: gray;
+    border: 1px solid #c7c7c7;
+    outline: none;
+    min-width: 150px;
+    width: auto;
+}
