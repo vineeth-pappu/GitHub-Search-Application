@@ -5,7 +5,7 @@ import GithubSearchFilter from './components/GithubSearchFilter';
 
 function App() {
   return (
-    <div>
+    <div className="app-wrapper">
         <AppHeader />
 
         <GithubSearchFilter />
