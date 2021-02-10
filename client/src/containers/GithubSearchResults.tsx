@@ -5,6 +5,7 @@ import SearchResultsLoader from '../components/SearchResultsLoader';
 import { loadingSelector } from '../store/selectors/githubSearchResult.selectors';
 import { Loading } from '../store/actions';
 import RepositoryList from '../components/RepositoryList';
+import UserList from '../components/UserList';
 
 function GithubSearchResults() {
   
@@ -13,12 +14,16 @@ function GithubSearchResults() {
   const searchTypeFilter = useSelector(searchTypeFilterSelector)
   const loading = useSelector(loadingSelector)
 
-  const [repoResult, setRepoResult] = useState({} as any)
+  const [data, setData] = useState({} as any)
 
   useEffect(() => {
     if (searchTextFilter && searchTextFilter.length >= 3) {
         dispatch(Loading(true))
-        fetchRepos()
+        if (searchTypeFilter == 'users') {
+            fetchUsers()
+        } else {
+            fetchRepos()
+        }
     } else {
         dispatch(Loading(false))
     }
@@ -33,8 +38,24 @@ function GithubSearchResults() {
         },
     });
     const result = await response.json()
-    setRepoResult(result);
+    setData(result);
     console.log('fetchRepos', result);
+    dispatch(Loading(false))
+    
+    // return response.json(); // parses JSON response into native JavaScript objects
+  }
+
+  const fetchUsers = async () => {
+    const query = "q=tom"
+    const response = await fetch("https://api.github.com/search/users?"+query, {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            'Accept': 'application/vnd.github.v3+json'
+        },
+    });
+    const result = await response.json()
+    setData(result);
+    console.log('fetchUsers', result);
     dispatch(Loading(false))
     
     // return response.json(); // parses JSON response into native JavaScript objects
@@ -42,7 +63,9 @@ function GithubSearchResults() {
 
   if (loading) return <SearchResultsLoader />
   
-  if (searchTypeFilter == 'repositories') return <RepositoryList data={repoResult} />
+  if (searchTypeFilter == 'repositories') return <RepositoryList data={data} />
+  
+  if (searchTypeFilter == 'users') return <UserList data={data} />
   
   return (
     <h1>No data</h1>
