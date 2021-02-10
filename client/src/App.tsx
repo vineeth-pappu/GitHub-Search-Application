@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
-import AppHeader from './components/AppHeader';
-import GithubSearchFilter from './containers/GithubSearchFilter';
+import GithubSearcher from './containers/GithubSearcher';
 
 function App() {
   return (
-    <div className="app-wrapper">
-        <AppHeader />
-
-        <GithubSearchFilter />
-    </div>
+    <GithubSearcher />
   );
 }
 
