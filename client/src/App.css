@@ -56,7 +56,7 @@ header {
 }
 
 .search-text-input {
-    width: 30%;
+    min-width: 420px;
     margin-right: 20px;
 }
 
