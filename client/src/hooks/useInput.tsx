@@ -6,17 +6,23 @@ interface inputProps {
 }
 
 
-export const useInput = (initialValue: any) => {
-  const [value, setValue] = useState(initialValue);
+export const useInput = (props: inputProps) => {
+  const [value, setValue] = useState(props.initialValue);
+
+  const setValueHandler = (value: any) => {
+    setValue(value);
+    // invoke the callback if present
+    props.onChange && props.onChange(value)
+  }
 
   return {
     value,
     setValue,
-    reset: () => setValue(""),
-    bind: {
+    reset: () => setValueHandler(""),
+    bindProps: {
       value,
       onChange: (event: { target: { value: any; }; }) => {
-        setValue(event.target.value);
+        setValueHandler(event.target.value);
       }
     }
   };

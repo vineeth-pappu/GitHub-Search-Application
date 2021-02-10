@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AppHeader from './components/AppHeader';
-import GithubSearchFilter from './components/GithubSearchFilter';
+import GithubSearchFilter from './containers/GithubSearchFilter';
 
 function App() {
   return (
