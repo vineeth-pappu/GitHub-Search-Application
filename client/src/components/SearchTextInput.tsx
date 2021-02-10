@@ -13,7 +13,8 @@ function SearchTextInput(props: {initialValue: any, onChange?: Function}) {
             type="search" 
             name="search"
             id="search"
-            placeholder="Start typing to search .." 
+            placeholder="Start typing to search .."
+            autoComplete="off"
             {...bindProps}
         />
     </div>

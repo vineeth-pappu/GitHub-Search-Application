@@ -1,11 +1,10 @@
-import React, { useMemo, useEffect, useState } from 'react';
-import AppHeader from '../components/AppHeader';
-import GithubSearchFilter from '../containers/GithubSearchFilter';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchTextFilterSelector, searchTypeFilterSelector } from '../store/selectors/githubSearchFilter.selectors';
 import SearchResultsLoader from '../components/SearchResultsLoader';
 import { loadingSelector } from '../store/selectors/githubSearchResult.selectors';
 import { Loading } from '../store/actions';
+import RepositoryList from '../components/RepositoryList';
 
 function GithubSearchResults() {
   
@@ -42,34 +41,11 @@ function GithubSearchResults() {
   }
 
   if (loading) return <SearchResultsLoader />
-
+  
+  if (searchTypeFilter == 'repositories') return <RepositoryList data={repoResult} />
+  
   return (
-    <div className="github-search-results-wrapper">
-        {
-            repoResult && repoResult.items && repoResult.items.map((d: any, i: any) => {
-                return (
-                    <div className="repo-card">
-                        <div className="repo-card-header">
-                            <div className="repo-name">Reponame</div>
-                            <div className="repo-desc">
-                                This is sample description. This is sample description
-                            </div>
-                        </div>
-                        <div className="repo-card-footer">
-                            <div className="footer-item">
-                                <div className="footer-item-icon">icon</div>
-                                <div className="footer-item-text">200</div>
-                            </div>
-                            <div className="footer-item">
-                                <div className="footer-item-icon">icon</div>
-                                <div className="footer-item-text">200</div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })
-        }
-    </div>
+    <h1>No data</h1>
   );
 }
 
