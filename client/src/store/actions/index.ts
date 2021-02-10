@@ -5,3 +5,5 @@ const allActions = {
 }
 
 export default allActions
+
+export * from './githubSearchResult.actions'

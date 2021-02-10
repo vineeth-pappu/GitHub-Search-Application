@@ -1,8 +1,10 @@
 import githubSearchFilter from './githubSearchFilter.reducer'
+import githubSearchResult from './githubSearchResult.reducer'
 import {combineReducers} from 'redux'
 
 const rootReducer = combineReducers({
-    githubSearchFilter
+    githubSearchFilter,
+    githubSearchResult
 })
 
 export default rootReducer

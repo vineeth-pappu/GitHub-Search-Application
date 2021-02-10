@@ -3,6 +3,7 @@ import AppHeader from '../components/AppHeader';
 import GithubSearchFilter from '../containers/GithubSearchFilter';
 import { useSelector } from 'react-redux';
 import { searchTextFilterSelector } from '../store/selectors/githubSearchFilter.selectors';
+import GithubSearchResults from './GithubSearchResults';
 
 const MIN_SEARCH_TEXT = 3;
 
@@ -15,6 +16,7 @@ function GithubSearcher() {
     <div className={`app-wrapper ${ canShowContent ? 'show-content' : '' }`}>
         <AppHeader />
         <GithubSearchFilter />
+        <GithubSearchResults />
     </div>
   );
 }
