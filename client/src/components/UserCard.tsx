@@ -2,10 +2,13 @@ import React from 'react';
 import userGroup from '../assets/user-group.svg';
 import folder from '../assets/folder.svg';
 import follower from '../assets/follower.svg';
+import { useNumberFormat } from '../hooks/useNumberFormat';
 
 function UserCard(props: {user: any}) {
   
   const { user } = props
+
+  const format = useNumberFormat()
 
   return (
     <div className="card user-card">
@@ -61,7 +64,7 @@ function UserCard(props: {user: any}) {
                     <img src={userGroup} alt="followers"/>
                 </div>
                 <div className="footer-item-text">
-                    { user.followers }
+                    { format(user.followers) }
                     <span className="caption">followers</span>
                 </div>
             </div>
@@ -70,7 +73,7 @@ function UserCard(props: {user: any}) {
                     <img src={follower} alt="following"/>
                 </div>
                 <div className="footer-item-text">
-                    { user.following }
+                    { format(user.following) }
                     <span className="caption">following</span>
                 </div>
             </div>
@@ -79,7 +82,7 @@ function UserCard(props: {user: any}) {
                     <img src={folder} alt="repositories"/>
                 </div>
                 <div className="footer-item-text">
-                    { user.public_repos }
+                    { format(user.public_repos) }
                     <span className="caption">repos</span>
                 </div>
             </div>

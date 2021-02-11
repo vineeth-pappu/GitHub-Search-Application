@@ -3,10 +3,12 @@ import star from '../assets/star.svg';
 import parallel from '../assets/parallel.svg';
 // import eye from '../assets/eye.svg';
 import scale from '../assets/scale.svg';
+import { useNumberFormat } from '../hooks/useNumberFormat';
 
 function RepositoryCard(props: {repo: any}) {
   
   const { repo } = props
+  const format = useNumberFormat()
 
   return (
     <div className="card repo-card">
@@ -29,7 +31,7 @@ function RepositoryCard(props: {repo: any}) {
                     <img src={star} alt="stars"/>
                 </div>
                 <div className="footer-item-text">
-                    { repo.stargazers_count }
+                    { format(repo.stargazers_count) }
                 </div>
             </div>
             {/* <div className="footer-item">
@@ -37,7 +39,7 @@ function RepositoryCard(props: {repo: any}) {
                     <img src={eye} alt="watches"/>
                 </div>
                 <div className="footer-item-text">
-                    { repo.watchers_count }
+                    { format(repo.watchers_count) }
                 </div>
             </div> */}
             <div className="footer-item">
@@ -45,7 +47,7 @@ function RepositoryCard(props: {repo: any}) {
                     <img src={parallel} alt="forks"/>
                 </div>
                 <div className="footer-item-text">
-                    { repo.forks_count }
+                    { format(repo.forks_count) }
                     <span className="caption">forks</span>
                 </div>
             </div>
