@@ -46,6 +46,7 @@ function RepositoryCard(props: {repo: any}) {
                 </div>
                 <div className="footer-item-text">
                     { repo.forks_count }
+                    <span className="caption">forks</span>
                 </div>
             </div>
             <div className="footer-item">

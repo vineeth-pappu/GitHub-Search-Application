@@ -62,6 +62,7 @@ function UserCard(props: {user: any}) {
                 </div>
                 <div className="footer-item-text">
                     { user.followers }
+                    <span className="caption">followers</span>
                 </div>
             </div>
             <div className="footer-item" title="following">
@@ -70,6 +71,7 @@ function UserCard(props: {user: any}) {
                 </div>
                 <div className="footer-item-text">
                     { user.following }
+                    <span className="caption">following</span>
                 </div>
             </div>
             <div className="footer-item" title="repositories">
@@ -78,6 +80,7 @@ function UserCard(props: {user: any}) {
                 </div>
                 <div className="footer-item-text">
                     { user.public_repos }
+                    <span className="caption">repos</span>
                 </div>
             </div>
         </div>
