@@ -54,8 +54,13 @@ function GithubSearchResults() {
         },
     });
     const result = await response.json()
+    // setData(result);
+    // console.log('fetchUsers', result);
+    const userDetailsApi = result.items.map((u: { url: RequestInfo; }) => fetch(u.url).then(r => r.json()))
+
+    result.items = await Promise.all(userDetailsApi)
     setData(result);
-    console.log('fetchUsers', result);
+    console.log('fetchUsers details', result);
     dispatch(Loading(false))
     
     // return response.json(); // parses JSON response into native JavaScript objects

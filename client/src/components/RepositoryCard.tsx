@@ -9,8 +9,8 @@ function RepositoryCard(props: {repo: any}) {
   const { repo } = props
 
   return (
-    <div className="repo-card">
-        <div className="repo-card-header">
+    <div className="card repo-card">
+        <div className="card-header repo-card-header">
             <div className="card-title repo-name">
                 <a href={repo.html_url} target="_blank">{ repo.full_name }</a>
             </div>
@@ -18,12 +18,12 @@ function RepositoryCard(props: {repo: any}) {
                 Updated on { new Date(repo.updated_at).toDateString() }
             </div>
         </div>
-        <div className="repo-card-body">
+        <div className="card-body repo-card-body">
             <div className="repo-desc" title={repo.description}>
                 { repo.description }
             </div>
         </div>
-        <div className="repo-card-footer">
+        <div className="card-footer repo-card-footer">
             <div className="footer-item">
                 <div className="footer-item-icon">
                     <img src={star} alt="stars"/>
