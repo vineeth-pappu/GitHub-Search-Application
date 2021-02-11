@@ -1,8 +1,7 @@
 import React from 'react';
-import star from '../assets/star.svg';
-import parallel from '../assets/parallel.svg';
-// import eye from '../assets/eye.svg';
-import scale from '../assets/scale.svg';
+import userGroup from '../assets/user-group.svg';
+import folder from '../assets/folder.svg';
+import follower from '../assets/follower.svg';
 
 function UserCard(props: {user: any}) {
   
@@ -57,25 +56,25 @@ function UserCard(props: {user: any}) {
             </div>
         </div>
         <div className="card-footer user-card-footer">
-            <div className="footer-item">
+            <div className="footer-item" title="followers">
                 <div className="footer-item-icon">
-                    <img src={star} alt="stars"/>
+                    <img src={userGroup} alt="followers"/>
                 </div>
                 <div className="footer-item-text">
                     { user.followers }
                 </div>
             </div>
-            <div className="footer-item">
+            <div className="footer-item" title="following">
                 <div className="footer-item-icon">
-                    <img src={parallel} alt="forks"/>
+                    <img src={follower} alt="following"/>
                 </div>
                 <div className="footer-item-text">
                     { user.following }
                 </div>
             </div>
-            <div className="footer-item">
+            <div className="footer-item" title="repositories">
                 <div className="footer-item-icon">
-                    <img src={scale} alt="license"/>
+                    <img src={folder} alt="repositories"/>
                 </div>
                 <div className="footer-item-text">
                     { user.public_repos }
