@@ -6,9 +6,10 @@ import { loadingSelector } from '../store/selectors/githubSearchResult.selectors
 import { Loading } from '../store/actions';
 import RepositoryList from '../components/RepositoryList';
 import UserList from '../components/UserList';
+import { getRepositories } from '../services/githubService';
 
 function GithubSearchResults() {
-  
+
   const dispatch = useDispatch()
   const searchTextFilter = useSelector(searchTextFilterSelector)
   const searchTypeFilter = useSelector(searchTypeFilterSelector)
@@ -18,40 +19,42 @@ function GithubSearchResults() {
 
   useEffect(() => {
     if (searchTextFilter && searchTextFilter.length >= 3) {
-        dispatch(Loading(true))
-        if (searchTypeFilter == 'users') {
-            fetchUsers()
-        } else {
-            fetchRepos()
-        }
+      dispatch(Loading(true))
+      if (searchTypeFilter === 'users') {
+        fetchUsers()
+      } else {
+        fetchRepos()
+      }
     } else {
-        dispatch(Loading(false))
+      dispatch(Loading(false))
     }
-  }, [searchTextFilter])
+  }, [searchTextFilter, searchTypeFilter])
 
   const fetchRepos = async () => {
-    const query = "q=tetris+language:assembly&sort=stars&order=desc"
-    const response = await fetch("https://api.github.com/search/repositories?"+query, {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Accept': 'application/vnd.github.v3+json'
-        },
-    });
-    const result = await response.json()
-    setData(result);
-    console.log('fetchRepos', result);
+    const req = {
+      q: searchTextFilter,
+      sort: "stars",
+      order: "desc"
+    }
+
+    try {
+      const { data } = await getRepositories(req);
+      console.log('fetchRepos', data);
+      setData(data);
+    } catch (error) {
+      console.log('fetchRepos error', error);
+    }
+
     dispatch(Loading(false))
-    
-    // return response.json(); // parses JSON response into native JavaScript objects
   }
 
   const fetchUsers = async () => {
     const query = "q=tom"
-    const response = await fetch("https://api.github.com/search/users?"+query, {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Accept': 'application/vnd.github.v3+json'
-        },
+    const response = await fetch("https://api.github.com/search/users?" + query, {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Accept': 'application/vnd.github.v3+json'
+      },
     });
     const result = await response.json()
     // setData(result);
@@ -62,16 +65,16 @@ function GithubSearchResults() {
     setData(result);
     console.log('fetchUsers details', result);
     dispatch(Loading(false))
-    
+
     // return response.json(); // parses JSON response into native JavaScript objects
   }
 
   if (loading) return <SearchResultsLoader />
-  
-  if (searchTypeFilter == 'repositories') return <RepositoryList data={data} />
-  
-  if (searchTypeFilter == 'users') return <UserList data={data} />
-  
+
+  if (searchTypeFilter === 'repositories') return <RepositoryList data={data} />
+
+  if (searchTypeFilter === 'users') return <UserList data={data} />
+
   return (
     <h1>No data</h1>
   );
