@@ -6,7 +6,7 @@ import { loadingSelector } from '../store/selectors/githubSearchResult.selectors
 import { Loading } from '../store/actions';
 import RepositoryList from '../components/RepositoryList';
 import UserList from '../components/UserList';
-import { getRepositories } from '../services/githubService';
+import { getRepositories, getUsers } from '../services/githubService';
 
 function GithubSearchResults() {
 
@@ -20,11 +20,13 @@ function GithubSearchResults() {
   useEffect(() => {
     if (searchTextFilter && searchTextFilter.length >= 3) {
       dispatch(Loading(true))
+
       if (searchTypeFilter === 'users') {
         fetchUsers()
       } else {
         fetchRepos()
       }
+
     } else {
       dispatch(Loading(false))
     }
@@ -49,24 +51,17 @@ function GithubSearchResults() {
   }
 
   const fetchUsers = async () => {
-    const query = "q=tom"
-    const response = await fetch("https://api.github.com/search/users?" + query, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        'Accept': 'application/vnd.github.v3+json'
-      },
-    });
-    const result = await response.json()
-    // setData(result);
-    // console.log('fetchUsers', result);
-    const userDetailsApi = result.items.map((u: { url: RequestInfo; }) => fetch(u.url).then(r => r.json()))
+    const req = { q: searchTextFilter }
 
-    result.items = await Promise.all(userDetailsApi)
-    setData(result);
-    console.log('fetchUsers details', result);
+    try {
+      const { data } = await getUsers(req);
+      console.log('fetchUsers', data);
+      setData(data);
+    } catch (error) {
+      console.log('fetchUsers error', error);
+    }
+
     dispatch(Loading(false))
-
-    // return response.json(); // parses JSON response into native JavaScript objects
   }
 
   if (loading) return <SearchResultsLoader />
