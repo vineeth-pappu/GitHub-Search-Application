@@ -21,8 +21,9 @@ class GithubSearchController extends BaseController {
 
     async searchRepositories(req: Request, res: Response) {
         try {
-            const query = "q=tetris+language:assembly&sort=stars&order=desc"
-            const { data } = await githubSearchService.users(query)
+            // const query = `q=tetris+language:assembly&sort=stars&order=desc`
+            // const query = `q=${req.query.q}`
+            const { data } = await githubSearchService.repositories(req.query)
             res.status(HttpResponse.HTTP_OK).send(data);
         } catch (error) {
             res.status(HttpResponse.HTTP_UNPROCESSABLE_ENTITY).send(error);

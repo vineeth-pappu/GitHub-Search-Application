@@ -14,12 +14,15 @@ class GithubSearchService {
         })
     }
 
-    repositories(query: string) {
-        return httpClient.get("https://api.github.com/search/repositories?" + query, {
+    repositories(query: any) {
+        return httpClient.get("https://api.github.com/search/repositories", {
             method: 'GET',
             headers: {
                 'Accept': 'application/vnd.github.v3+json'
             },
+            params: {
+                ...query
+            }
         })
     }
 }
