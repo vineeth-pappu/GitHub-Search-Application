@@ -17,12 +17,16 @@ class GithubSearchController extends BaseController {
             // throw new Error("users failed")
             res.status(HttpResponse.HTTP_UNPROCESSABLE_ENTITY).send(error);
         }
-
     }
 
     async searchRepositories(req: Request, res: Response) {
-        res.status(HttpResponse.HTTP_OK).send(`List of repositories`);
-
+        try {
+            const query = "q=tetris+language:assembly&sort=stars&order=desc"
+            const { data } = await githubSearchService.users(query)
+            res.status(HttpResponse.HTTP_OK).send(data);
+        } catch (error) {
+            res.status(HttpResponse.HTTP_UNPROCESSABLE_ENTITY).send(error);
+        }
     }
 
 }
