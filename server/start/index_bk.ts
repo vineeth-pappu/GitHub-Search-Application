@@ -5,8 +5,8 @@ import * as bodyparser from 'body-parser';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import cors from 'cors';
-import { CommonRoutesConfig } from './common/common.routes.config';
-import { GithubSearcherRoutes } from './github-searcher/githubSearcher.routes.config';
+import { CommonRoutesConfig } from '../app/common/common.routes.config';
+import { GithubSearcherRoutes } from '../app/github-searcher/githubSearcher.routes.config';
 import debug from 'debug';
 
 

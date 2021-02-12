@@ -4,7 +4,7 @@
     "description": "GitHub-Searcher service",
     "main": "index.js",
     "scripts": {
-        "start": "tsc && node ./dist/app.js",
+        "start": "tsc && node ./dist/start",
         "start:dev": "nodemon --config nodemon.json",
         "debug": "export DEBUG=* && npm run start",
         "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,6 +1,6 @@
 {
-    "watch": ["src"],
+    "watch": ["app", "middleware", "start", "util"],
     "ext": "ts",
-    "ignore": ["src/public"],
-    "exec": "ts-node ./app.ts --env=development"
+    "ignore": ["public"],
+    "exec": "ts-node ./start --env=development"
 }
