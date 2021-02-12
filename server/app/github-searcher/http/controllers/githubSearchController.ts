@@ -8,12 +8,25 @@ class GithubSearchController extends BaseController {
 
     async searchUsers(req: Request, res: Response) {
         try {
-            const query = "qs=tom"
-            const { data } = await githubSearchService.users(query)
+            const { data } = await githubSearchService.users(req.query)
+
+            const usersWithDetails = data.items.map((u: { url: string; }) => {
+                return new Promise((resolve, reject) => {
+                    githubSearchService.userDetails(u.url).then(res => {
+                        resolve(res.data)
+                    }).catch(err => {
+                        console.log('user details promise error', err);
+                        resolve(null)
+                    })
+                })
+            })
+
+            data.items = await Promise.all(usersWithDetails)
 
             res.status(HttpResponse.HTTP_OK).send(data);
+
         } catch (error) {
-            // console.log('error---------', error);
+            console.log('error---------', error);
             // throw new Error("users failed")
             res.status(HttpResponse.HTTP_UNPROCESSABLE_ENTITY).send(error);
         }
