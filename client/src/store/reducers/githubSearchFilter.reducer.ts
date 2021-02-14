@@ -3,8 +3,9 @@ const initialState = {
     searchType: "users"
 }
 
-const githubSearchFilter = (state = initialState, action: { type: any, payload: any }) => {
-    switch(action.type){
+const githubSearchFilter = (state = initialState, action: { type: string, payload: any }) => {
+    // const githubSearchFilter = (state = initialState, action) => {
+    switch (action.type) {
         case "SearchText":
             return {
                 ...state,
@@ -15,7 +16,7 @@ const githubSearchFilter = (state = initialState, action: { type: any, payload: 
                 ...state,
                 searchType: action.payload
             }
-        default: 
+        default:
             return state
     }
 }

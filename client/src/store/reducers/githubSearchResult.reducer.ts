@@ -3,7 +3,8 @@ const initialState = {
     searchResults: {}
 }
 
-const githubSearchResults = (state = initialState, action: { type: any, payload: any }) => {
+const githubSearchResults = (state = initialState, action: { type: string, payload: any }) => {
+    // const githubSearchResults = (state = initialState, action) => {
     switch (action.type) {
         case "SetLoading":
             return {
