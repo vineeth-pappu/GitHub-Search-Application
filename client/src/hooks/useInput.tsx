@@ -1,28 +1,40 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
+import debounce from 'lodash.debounce'
 
 interface inputProps {
-    initialValue: any,
-    onChange?: Function,
+  initialValue: any,
+  onChange: Function,
+  debounceTime: number,
 }
-
 
 export const useInput = (props: inputProps) => {
   const [value, setValue] = useState(props.initialValue);
 
-  const setValueHandler = (value: any) => {
-    setValue(value);
+  const handleChange = () => {
     // invoke the callback if present
-    props.onChange && props.onChange(value)
+    return props.onChange ? props.onChange(value) : () => { }
   }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const delayedValueHandler = useCallback(debounce(handleChange, props.debounceTime), [value]);
+
+
+  useEffect(() => {
+    delayedValueHandler();
+
+    // Cancel the debounce on useEffect cleanup.
+    return delayedValueHandler.cancel;
+  }, [value, delayedValueHandler]);
+
 
   return {
     value,
     setValue,
-    reset: () => setValueHandler(""),
+    reset: () => setValue(""),
     bindProps: {
       value,
       onChange: (event: { target: { value: any; }; }) => {
-        setValueHandler(event.target.value);
+        setValue(event.target.value);
       }
     }
   };

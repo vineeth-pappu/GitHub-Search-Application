@@ -16,15 +16,16 @@ function GithubSearchFilter() {
 
   return (
     <div className="filter-wrapper">
-        <SearchTextInput 
-            initialValue={searchTextFilter} 
-            onChange={handleSearchTextChange} 
-        />
-        
-        <SearchTypeInput 
-            initialValue={searchTypeFilter} 
-            onChange={handleSearchTypeChange} 
-        />
+      <SearchTextInput
+        initialValue={searchTextFilter}
+        onChange={handleSearchTextChange}
+        debounceTime={500}
+      />
+
+      <SearchTypeInput
+        initialValue={searchTypeFilter}
+        onChange={handleSearchTypeChange}
+      />
     </div>
   );
 }
