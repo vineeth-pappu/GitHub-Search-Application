@@ -4,3 +4,10 @@ export const Loading = (value: Boolean) => {
         payload: value
     }
 }
+
+export const LoadedResults = (payload: { key: string, data: any }) => {
+    return {
+        type: "LoadedResults",
+        payload
+    }
+}
