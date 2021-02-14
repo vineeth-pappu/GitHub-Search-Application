@@ -1,9 +1,8 @@
 import httpClient from '../../common/utils/httpClient'
 
-const OAUTH_TOKEN = "1e4418729a2c5350e625c69aad024df904b8da56"
 class GithubSearchService {
-    constructor() {
 
+    constructor() {
     }
 
     users(query: any) {
@@ -11,7 +10,7 @@ class GithubSearchService {
             method: 'GET',
             headers: {
                 'Accept': 'application/vnd.github.v3+json',
-                'Authorization': `token ${OAUTH_TOKEN}`
+                'Authorization': `token ${process.env.GITHUB_ACCESS_TOKEN}`
             },
             params: {
                 ...query
@@ -22,7 +21,7 @@ class GithubSearchService {
     userDetails(userApiUrl: string) {
         return httpClient.get(userApiUrl, {
             headers: {
-                'Authorization': `token ${OAUTH_TOKEN}`
+                'Authorization': `token ${process.env.GITHUB_ACCESS_TOKEN}`
             },
         })
     }
@@ -32,7 +31,7 @@ class GithubSearchService {
             method: 'GET',
             headers: {
                 'Accept': 'application/vnd.github.v3+json',
-                'Authorization': `token ${OAUTH_TOKEN}`
+                'Authorization': `token ${process.env.GITHUB_ACCESS_TOKEN}`
             },
             params: {
                 ...query

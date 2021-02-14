@@ -15,7 +15,7 @@ export const loadEnv = () => {
 
     // Set the env file
     const result = dotenv.config({
-        path: `./env/${options.env}.env`,
+        path: `./env/.env.${options.env}`,
     });
     if (result.error) {
         throw result.error;
