@@ -7,14 +7,6 @@ interface ISearchQuery {
     order?: string
 }
 
-export const getUsers = (payload: ISearchQuery) => {
-    return axios.get(`${API_URL}/GithubSearcher/users`, {
-        params: payload
-    })
-}
-
-export const getRepositories = (payload: ISearchQuery) => {
-    return axios.get(`${API_URL}/GithubSearcher/repositories`, {
-        params: payload
-    })
+export const searchGithub = (payload: ISearchQuery) => {
+    return axios.post(`${API_URL}/github/search`, payload)
 }

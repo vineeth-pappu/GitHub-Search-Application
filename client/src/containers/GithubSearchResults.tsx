@@ -6,7 +6,7 @@ import { loadingSelector } from '../store/selectors/githubSearchResult.selectors
 import { Loading } from '../store/actions';
 import RepositoryList from '../components/RepositoryList';
 import UserList from '../components/UserList';
-import { getRepositories, getUsers } from '../services/githubService';
+import { searchGithub } from '../services/githubService';
 
 function GithubSearchResults() {
 
@@ -21,48 +21,33 @@ function GithubSearchResults() {
     if (searchTextFilter && searchTextFilter.length >= 3) {
       dispatch(Loading(true))
 
-      if (searchTypeFilter === 'users') {
-        fetchUsers()
-      } else {
-        fetchRepos()
-      }
+      handleFilterChange()
 
     } else {
       dispatch(Loading(false))
     }
   }, [searchTextFilter, searchTypeFilter])
 
-  const fetchRepos = async () => {
+
+  const handleFilterChange = async () => {
     const req = {
       q: searchTextFilter,
+      type: searchTypeFilter,
       sort: "stars",
       order: "desc"
     }
 
     try {
-      const { data } = await getRepositories(req);
-      console.log('fetchRepos', data);
+      const { data } = await searchGithub(req);
+      console.log('search results', data);
       setData(data);
     } catch (error) {
-      console.log('fetchRepos error', error);
+      console.log('search results error', error);
     }
 
     dispatch(Loading(false))
   }
 
-  const fetchUsers = async () => {
-    const req = { q: searchTextFilter }
-
-    try {
-      const { data } = await getUsers(req);
-      console.log('fetchUsers', data);
-      setData(data);
-    } catch (error) {
-      console.log('fetchUsers error', error);
-    }
-
-    dispatch(Loading(false))
-  }
 
   if (!searchTextFilter || searchTextFilter.length < 3) return null
 

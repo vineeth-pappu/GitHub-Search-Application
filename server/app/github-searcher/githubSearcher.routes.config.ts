@@ -1,7 +1,8 @@
 import { CommonRoutesConfig } from '../common/common.routes.config';
 import express from 'express';
-import githubSearchController from './http/controllers/githubSearchController';
+import GithubSearchController from './http/controllers/githubSearchController';
 
+const githubSearchController = new GithubSearchController();
 export class GithubSearcherRoutes extends CommonRoutesConfig {
 
     constructor(app: express.Application) {
@@ -9,9 +10,7 @@ export class GithubSearcherRoutes extends CommonRoutesConfig {
     }
 
     configureRoutes() {
-        this.app.route(`/GithubSearcher/users`).get(githubSearchController.searchUsers)
-
-        this.app.route(`/GithubSearcher/repositories`).get(githubSearchController.searchRepositories)
+        this.app.route(`/github/search`).post(githubSearchController.search)
 
         return this.app;
     }
