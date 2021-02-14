@@ -9,7 +9,8 @@ const debugLog: debug.IDebugger = debug('app');
 export default class Server {
 
     server: http.Server = http.createServer(app);
-    port: Number = 3000;
+    port: Number = Number(process.env.PORT || 4001);
+    host: string = (process.env.HOST || 'http://localhost')
 
     router = new Router();
 
@@ -23,7 +24,7 @@ export default class Server {
 
     private start() {
         this.server.listen(this.port, () => {
-            debugLog(`Server running at http://localhost:${this.port}`);
+            debugLog(`Server running at ${this.host}:${this.port}`);
 
             this.router.routes.forEach((route: CommonRoutesConfig) => {
                 debugLog(`Routes configured for ${route.getName()}`);
