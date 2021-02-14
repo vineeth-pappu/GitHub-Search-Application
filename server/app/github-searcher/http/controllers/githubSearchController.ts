@@ -41,9 +41,21 @@ class GithubSearchController extends BaseController {
     async searchRepositories(req: Request, res: Response) {
         try {
             // const query = `q=tetris+language:assembly&sort=stars&order=desc`
-            // const query = `q=${req.query.q}`
+
+            // check in cache
+            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.query))
+            if (dataInCache) {
+                // send cached data
+                res.status(HttpResponse.HTTP_OK).send(JSON.parse(dataInCache));
+                return
+            }
+
             const { data } = await githubSearchService.repositories(req.query)
+            // set repo list in cache
+            const saveInCache = await CACHE_SETEX_ASYNC(JSON.stringify(req.query), 60, JSON.stringify(data))
+
             res.status(HttpResponse.HTTP_OK).send(data);
+
         } catch (error) {
             res.status(HttpResponse.HTTP_UNPROCESSABLE_ENTITY).send(error);
         }
