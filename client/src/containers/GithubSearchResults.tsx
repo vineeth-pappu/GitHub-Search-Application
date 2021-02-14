@@ -64,6 +64,8 @@ function GithubSearchResults() {
     dispatch(Loading(false))
   }
 
+  if (!searchTextFilter || searchTextFilter.length < 3) return null
+
   if (loading) return <SearchResultsLoader />
 
   if (searchTypeFilter === 'repositories') return <RepositoryList data={data} />
