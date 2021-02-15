@@ -1,6 +1,6 @@
 import { SearchFilterActionTypes, SEARCH_TEXT, SEARCH_TYPE } from "../actions/githubSearchFilter.actions"
 
-interface SearchFilterState {
+export interface SearchFilterState {
     searchText: string,
     searchType: string
 }

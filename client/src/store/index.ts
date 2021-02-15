@@ -1,18 +1,15 @@
 import { createStore, applyMiddleware } from 'redux'
-import { persistStore, persistReducer, persistCombineReducers } from 'redux-persist'
+import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import rootReducer, { IRootReducer } from './reducers'
+import rootReducer, { RootState } from './reducers'
 
 const persistConfig = { // configuration object for redux-persist
     key: 'root',
-    storage, // define which storage to use
+    storage, // define which storage to use,
+    blacklist: [], // blacklist specific states
 }
 
-// const rootReducer2 = createStore(rootReducer)
-
-// const persistedReducer = persistReducer(persistConfig, rootReducer) // create a persisted reducer
-const persistedReducer = persistCombineReducers(persistConfig, rootReducer) // create a persisted reducer
-// const persistedReducer = persistReducer(persistConfig, rootReducer2);
+const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer) // create a persisted reducer
 
 
 const store = createStore(

@@ -1,17 +1,24 @@
-const initialState = {
+import { IResult, SearchResultsActionTypes, SET_LOADING, LOADED_RESULTS } from "../actions/githubSearchResult.actions";
+
+export interface SearchResultsState {
+    loading: boolean,
+    searchResults: { [key: string]: IResult }
+}
+
+const initialState: SearchResultsState = {
     loading: false,
     searchResults: {}
 }
 
-const githubSearchResults = (state = initialState, action: { type: string, payload: any }) => {
+const githubSearchResults = (state = initialState, action: SearchResultsActionTypes): SearchResultsState => {
     // const githubSearchResults = (state = initialState, action) => {
     switch (action.type) {
-        case "SetLoading":
+        case SET_LOADING:
             return {
                 ...state,
                 loading: action.payload
             }
-        case "LoadedResults":
+        case LOADED_RESULTS:
             return {
                 ...state,
                 searchResults: {

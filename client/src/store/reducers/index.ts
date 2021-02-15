@@ -1,21 +1,18 @@
-import githubSearchFilter from './githubSearchFilter.reducer'
-import githubSearchResult from './githubSearchResult.reducer'
+import githubSearchFilter, { SearchFilterState } from './githubSearchFilter.reducer'
+import githubSearchResult, { SearchResultsState } from './githubSearchResult.reducer'
 import { combineReducers } from 'redux'
 
 export interface IRootReducer {
-    githubSearchFilter: {
-        searchText: string,
-        searchType: string
-    },
-    githubSearchResult: {
-        loading: boolean,
-        searchResults: { [key: string]: any }
-    }
+    githubSearchFilter: SearchFilterState,
+    githubSearchResult: SearchResultsState
 }
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers<IRootReducer>({
     githubSearchFilter,
     githubSearchResult
 })
+
+export type RootState = ReturnType<typeof rootReducer>
+
 
 export default rootReducer

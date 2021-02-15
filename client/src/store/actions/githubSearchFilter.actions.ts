@@ -1,12 +1,14 @@
+import { Action } from "redux"
+
 export const SEARCH_TEXT = 'SEARCH_TEXT'
 export const SEARCH_TYPE = 'SEARCH_TYPE'
 
-interface SetSearchTextAction {
+interface SetSearchTextAction extends Action {
   type: typeof SEARCH_TEXT
   payload: string
 }
 
-interface SetSearchTypeAction {
+interface SetSearchTypeAction extends Action {
   type: typeof SEARCH_TYPE
   payload: string
 }
