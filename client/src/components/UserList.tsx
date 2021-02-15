@@ -8,7 +8,7 @@ function UserList(props: {data: any}) {
   return (
     <div className="github-search-results-wrapper">
         {
-            data && data.items && data.items.map((user: any, i: any) => {
+            data?.items?.map((user: any, i: number) => {
                 return (
                     <UserCard user={user} key={i} />
                 )
