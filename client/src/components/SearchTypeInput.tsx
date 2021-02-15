@@ -1,5 +1,11 @@
 import React from 'react';
 import { useInput } from '../hooks/useInput';
+import { GITHUB_SEARCH_TYPES } from '../config/constants';
+
+const SEARCH_TYPE_OPTIONS = Object.keys(GITHUB_SEARCH_TYPES).map(key => ({
+        label: GITHUB_SEARCH_TYPES[key],
+        value: key
+    }))
 
 function SearchTypeInput(props: { initialValue: any, onChange?: Function, debounceTime?: number }) {
 
@@ -10,8 +16,11 @@ function SearchTypeInput(props: { initialValue: any, onChange?: Function, deboun
   return (
     <div className="search-type-input select-input-wrapper">
       <select name="type" id="type" {...bindProps}>
-        <option value="users">Users</option>
-        <option value="repositories">Repositories</option>
+          {
+            SEARCH_TYPE_OPTIONS.map((item, index) => (
+                <option key={index} value={item.value}>{ item.label }</option>
+            ))
+          }
       </select>
     </div>
   );

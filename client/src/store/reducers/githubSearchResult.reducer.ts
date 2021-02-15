@@ -11,7 +11,6 @@ const initialState: SearchResultsState = {
 }
 
 const githubSearchResults = (state = initialState, action: SearchResultsActionTypes): SearchResultsState => {
-    // const githubSearchResults = (state = initialState, action) => {
     switch (action.type) {
         case SET_LOADING:
             return {

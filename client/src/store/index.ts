@@ -11,7 +11,6 @@ const persistConfig = { // configuration object for redux-persist
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer) // create a persisted reducer
 
-
 const store = createStore(
     persistedReducer, // pass the persisted reducer instead of rootReducer to createStore
     applyMiddleware() // add any middlewares here

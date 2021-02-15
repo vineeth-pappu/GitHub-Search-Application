@@ -11,7 +11,6 @@ const initialState: SearchFilterState = {
 }
 
 const githubSearchFilter = (state = initialState, action: SearchFilterActionTypes): SearchFilterState => {
-    // const githubSearchFilter = (state = initialState, action) => {
     switch (action.type) {
         case SEARCH_TEXT:
             return {

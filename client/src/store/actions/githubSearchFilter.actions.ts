@@ -1,3 +1,7 @@
+/* ******************************************** */
+/* ************* Action Types ***************** */
+/* ******************************************** */
+
 import { Action } from "redux"
 
 export const SEARCH_TEXT = 'SEARCH_TEXT'
@@ -17,7 +21,9 @@ export type SearchFilterActionTypes = SetSearchTextAction | SetSearchTypeAction
 
 
 
-
+/* ******************************************** */
+/* ************* Action Creators ***************** */
+/* ******************************************** */
 
 export const setSearchText = (value: string): SearchFilterActionTypes => {
     return {

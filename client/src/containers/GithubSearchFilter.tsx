@@ -11,8 +11,8 @@ function GithubSearchFilter() {
   const searchTextFilter = useSelector(searchTextFilterSelector)
   const searchTypeFilter = useSelector(searchTypeFilterSelector)
 
-  const handleSearchTextChange = (value: any) => dispatch(setSearchText(value))
-  const handleSearchTypeChange = (value: any) => dispatch(setSearchType(value))
+  const handleSearchTextChange = (value: string) => dispatch(setSearchText(value))
+  const handleSearchTypeChange = (value: string) => dispatch(setSearchType(value))
 
   return (
     <div className="filter-wrapper">

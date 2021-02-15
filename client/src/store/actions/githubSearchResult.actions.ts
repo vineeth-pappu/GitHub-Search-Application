@@ -1,3 +1,7 @@
+/* ******************************************** */
+/* ************* Action Types ***************** */
+/* ******************************************** */
+
 import { Action } from "redux"
 
 export const SET_LOADING = 'SET_LOADING'
@@ -19,7 +23,9 @@ export type SearchResultsActionTypes = SetLoadingAction | SetLoadedResultsAction
 
 
 
-
+/* ******************************************** */
+/* ************* Action Creators ***************** */
+/* ******************************************** */
 
 export const Loading = (value: boolean): SearchResultsActionTypes => {
     return {
