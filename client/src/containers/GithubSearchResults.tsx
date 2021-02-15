@@ -18,44 +18,45 @@ function GithubSearchResults() {
 
   const [data, setData] = useState({} as any)
 
+  
   useEffect(() => {
     if (searchTextFilter && searchTextFilter.length >= 3) {
       dispatch(Loading(true))
+
+        const handleFilterChange = async () => {
+            const req = {
+            q: searchTextFilter,
+            type: searchTypeFilter,
+            sort: "stars",
+            order: "desc"
+            }
+
+            // check if data exists in store
+            if (searchResults[JSON.stringify(req)]) {
+            setData(searchResults[JSON.stringify(req)]);
+            dispatch(Loading(false))
+            return
+            }
+
+            try {
+            const { data } = await searchGithub(req);
+            console.log('search results', data);
+            dispatch(LoadedResults({ key: JSON.stringify(req), data }))
+            setData(data);
+            } catch (error) {
+            console.log('search results error', error);
+            }
+
+            dispatch(Loading(false))
+        }
 
       handleFilterChange()
 
     } else {
       dispatch(Loading(false))
     }
-  }, [searchTextFilter, searchTypeFilter])
+  }, [searchTextFilter, searchTypeFilter, dispatch, searchResults])
 
-
-  const handleFilterChange = async () => {
-    const req = {
-      q: searchTextFilter,
-      type: searchTypeFilter,
-      sort: "stars",
-      order: "desc"
-    }
-
-    // check if data exists in store
-    if (searchResults[JSON.stringify(req)]) {
-      setData(searchResults[JSON.stringify(req)]);
-      dispatch(Loading(false))
-      return
-    }
-
-    try {
-      const { data } = await searchGithub(req);
-      console.log('search results', data);
-      dispatch(LoadedResults({ key: JSON.stringify(req), data }))
-      setData(data);
-    } catch (error) {
-      console.log('search results error', error);
-    }
-
-    dispatch(Loading(false))
-  }
 
 
   if (!searchTextFilter || searchTextFilter.length < 3) return null

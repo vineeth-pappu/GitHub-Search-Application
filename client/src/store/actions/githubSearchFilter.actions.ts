@@ -12,7 +12,9 @@ export const setSearchType = (value: any) => {
     }
 }
 
-export default {
+const githubSearchFilterActions = {
     setSearchText,
     setSearchType
 }
+
+export default githubSearchFilterActions;
