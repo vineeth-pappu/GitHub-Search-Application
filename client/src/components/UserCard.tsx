@@ -18,7 +18,7 @@ function UserCard(props: {user: any}) {
             </div>
             <div className="card-title">
                 <div className="user-name">
-                    <a href={user.html_url} target="_blank">{ user.name }</a>
+                    <a href={user.html_url} target="_blank" rel="noreferrer">{ user.name }</a>
                 </div>
                 <div className="user-nickname">{ user.login }</div>
                 <div className="card-subtitle">
@@ -44,12 +44,12 @@ function UserCard(props: {user: any}) {
                 }
                 { user.blog && (
                     <div className="card-subtitle">
-                        Website: <a href={user.blog} target="_blank"> { user.blog } </a>
+                        Website: <a href={user.blog} target="_blank"  rel="noreferrer"> { user.blog } </a>
                     </div> )
                 }
                 { user.twitter_username && (
                     <div className="card-subtitle">
-                        Twitter: <a href={`https://twitter.com/${user.twitter_username}`} target="_blank"> { user.twitter_username } </a>
+                        Twitter: <a href={`https://twitter.com/${user.twitter_username}`} target="_blank"  rel="noreferrer"> { user.twitter_username } </a>
                     </div> )
                 }
                 <br />

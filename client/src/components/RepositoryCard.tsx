@@ -14,7 +14,7 @@ function RepositoryCard(props: {repo: any}) {
     <div className="card repo-card">
         <div className="card-header repo-card-header">
             <div className="card-title repo-name">
-                <a href={repo.html_url} target="_blank">{ repo.full_name }</a>
+                <a href={repo.html_url} target="_blank" rel="noreferrer">{ repo.full_name }</a>
             </div>
             <div className="card-subtitle">
                 Updated on { new Date(repo.updated_at).toDateString() }
