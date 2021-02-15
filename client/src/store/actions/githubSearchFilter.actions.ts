@@ -1,13 +1,32 @@
-export const setSearchText = (value: any) => {
+export const SEARCH_TEXT = 'SEARCH_TEXT'
+export const SEARCH_TYPE = 'SEARCH_TYPE'
+
+interface SetSearchTextAction {
+  type: typeof SEARCH_TEXT
+  payload: string
+}
+
+interface SetSearchTypeAction {
+  type: typeof SEARCH_TYPE
+  payload: string
+}
+
+export type SearchFilterActionTypes = SetSearchTextAction | SetSearchTypeAction
+
+
+
+
+
+export const setSearchText = (value: string): SearchFilterActionTypes => {
     return {
-        type: "SearchText",
+        type: SEARCH_TEXT,
         payload: value
     }
 }
 
-export const setSearchType = (value: any) => {
+export const setSearchType = (value: string): SearchFilterActionTypes => {
     return {
-        type: "SearchType",
+        type: SEARCH_TYPE,
         payload: value
     }
 }

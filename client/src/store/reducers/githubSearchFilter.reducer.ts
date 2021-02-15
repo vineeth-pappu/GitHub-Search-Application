@@ -1,17 +1,24 @@
-const initialState = {
+import { SearchFilterActionTypes, SEARCH_TEXT, SEARCH_TYPE } from "../actions/githubSearchFilter.actions"
+
+interface SearchFilterState {
+    searchText: string,
+    searchType: string
+}
+
+const initialState: SearchFilterState = {
     searchText: "",
     searchType: "users"
 }
 
-const githubSearchFilter = (state = initialState, action: { type: string, payload: any }) => {
+const githubSearchFilter = (state = initialState, action: SearchFilterActionTypes): SearchFilterState => {
     // const githubSearchFilter = (state = initialState, action) => {
     switch (action.type) {
-        case "SearchText":
+        case SEARCH_TEXT:
             return {
                 ...state,
                 searchText: action.payload
             }
-        case "SearchType":
+        case SEARCH_TYPE:
             return {
                 ...state,
                 searchType: action.payload
