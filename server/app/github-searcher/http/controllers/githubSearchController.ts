@@ -1,7 +1,6 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import BaseController from '../../../common/baseController';
 import HttpResponse from '../../../common/facades/httpResponse';
-import httpClient from '../../../common/utils/httpClient'
 import githubSearchService from '../../services/githubSearch.service';
 import { CACHE_SETEX_ASYNC, CACHE_GET_ASYNC } from '../../../common/utils/redisClient';
 class GithubSearchController extends BaseController {
@@ -38,7 +37,7 @@ class GithubSearchController extends BaseController {
             data.items = await Promise.all(usersWithDetails)
 
             // set user list in cache
-            const saveInCache = await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
+            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
 
             res.status(HttpResponse.HTTP_OK).send(data);
 
@@ -61,7 +60,7 @@ class GithubSearchController extends BaseController {
 
             const { data } = await githubSearchService.repositories(req.body)
             // set repo list in cache
-            const saveInCache = await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
+            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
 
             res.status(HttpResponse.HTTP_OK).send(data);
 
@@ -72,7 +71,7 @@ class GithubSearchController extends BaseController {
     }
 
     getUserDetailsFromUrl = async (url: string) => {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
             // check if user details exists in cache
             const dataInCache = await CACHE_GET_ASYNC(url) as string
             if (dataInCache) {
@@ -83,7 +82,7 @@ class GithubSearchController extends BaseController {
 
             githubSearchService.userDetails(url).then(async (res) => {
                 // set user details in cache
-                const saveInCache = await CACHE_SETEX_ASYNC(url, 60, JSON.stringify(res.data))
+                await CACHE_SETEX_ASYNC(url, 60, JSON.stringify(res.data))
                 // send cached data
                 resolve(res.data)
             }).catch(err => {
