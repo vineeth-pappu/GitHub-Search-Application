@@ -20,7 +20,8 @@ class GithubSearchController extends BaseController {
         try {
 
             // check in cache
-            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.body))
+            
+            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.body)) as string;
             if (dataInCache) {
                 // send cached data
                 res.status(HttpResponse.HTTP_OK).send(JSON.parse(dataInCache));
@@ -51,7 +52,7 @@ class GithubSearchController extends BaseController {
     searchRepositories = async (req: Request, res: Response) => {
         try {
             // check in cache
-            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.body))
+            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.body)) as string
             if (dataInCache) {
                 // send cached data
                 res.status(HttpResponse.HTTP_OK).send(JSON.parse(dataInCache));
@@ -73,7 +74,7 @@ class GithubSearchController extends BaseController {
     getUserDetailsFromUrl = async (url: string) => {
         return new Promise(async (resolve, reject) => {
             // check if user details exists in cache
-            const dataInCache = await CACHE_GET_ASYNC(url)
+            const dataInCache = await CACHE_GET_ASYNC(url) as string
             if (dataInCache) {
                 // send cached data
                 resolve(JSON.parse(dataInCache));
