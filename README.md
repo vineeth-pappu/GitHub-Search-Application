@@ -25,4 +25,4 @@
 Read more about Client app [here](https://github.com/vineeth-pappu/GitHub-Search-Application/blob/main/client/README.md)
 
 **[Server](https://github.com/vineeth-pappu/GitHub-Search-Application/tree/main/server)** - contains server side Express app.
-Read more about Server app [here](https://github.com/vineeth-pappu/GitHub-Search-Application/blob/main/client/README.md)
+Read more about Server app [here](https://github.com/vineeth-pappu/GitHub-Search-Application/blob/main/server/README.md)
