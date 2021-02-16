@@ -3,12 +3,14 @@ import { loadEnv } from './environment';
 import Server from './server'
 import { errorLogger } from "../middleware/expressWinston";
 import bootMiddlewares from './middleware'
+import exceptionHandler from '../middleware/exceptionHandler';
 
 loadEnv();
 bootMiddlewares();
 
 const server = new Server();
 
-errorLogger();
+server.errorLogger(errorLogger);
+server.exceptionHandler(exceptionHandler);
 
-server.init()
+server.init();

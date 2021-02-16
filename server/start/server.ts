@@ -22,6 +22,14 @@ export default class Server {
         this.start()
     }
 
+    errorLogger(logger: Function) {
+        logger()
+    }
+
+    exceptionHandler(handler: Function) {
+        handler()
+    }
+
     private start() {
         this.server.listen(this.port, () => {
             debugLog(`Server running at ${this.host}:${this.port}`);
