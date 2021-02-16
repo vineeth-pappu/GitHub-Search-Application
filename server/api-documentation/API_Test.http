@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
     "q": "tom",
-    "type": "repositories",
+    "type": "users",
     "sort": "stars",
     "order": "desc"
 
