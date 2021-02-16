@@ -21,6 +21,9 @@
 - Merge to master & Create a release
 
 # Project Structure
+
+Follow the instructions present in **[Client](https://github.com/vineeth-pappu/GitHub-Search-Application/tree/main/client)** and **[Server](https://github.com/vineeth-pappu/GitHub-Search-Application/tree/main/server)** to run the application.
+
 **[Client](https://github.com/vineeth-pappu/GitHub-Search-Application/tree/main/client)** - contains client side React app.
 Read more about Client app [here](https://github.com/vineeth-pappu/GitHub-Search-Application/blob/main/client/README.md)
 
