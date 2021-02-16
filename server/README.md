@@ -29,6 +29,8 @@ Update the personal access token in `GITHUB_ACCESS_TOKEN` in  `.env.development`
 
 **Start the app**
 
+Make sure `Redis` server is up and running.
+
 `yarn start:dev` or `npm start:dev`
 
 
