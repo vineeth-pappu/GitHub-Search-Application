@@ -19,7 +19,7 @@ class GithubSearchController extends BaseController {
         try {
 
             // check in cache
-            
+
             const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(req.body)) as string;
             if (dataInCache) {
                 // send cached data
@@ -37,7 +37,7 @@ class GithubSearchController extends BaseController {
             data.items = await Promise.all(usersWithDetails)
 
             // set user list in cache
-            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
+            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), Number(process.env.CACHE_DURATION), JSON.stringify(data))
 
             res.status(HttpResponse.HTTP_OK).send(data);
 
@@ -60,7 +60,7 @@ class GithubSearchController extends BaseController {
 
             const { data } = await githubSearchService.repositories(req.body)
             // set repo list in cache
-            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), 60, JSON.stringify(data))
+            await CACHE_SETEX_ASYNC(JSON.stringify(req.body), Number(process.env.CACHE_DURATION), JSON.stringify(data))
 
             res.status(HttpResponse.HTTP_OK).send(data);
 
@@ -82,7 +82,7 @@ class GithubSearchController extends BaseController {
 
             githubSearchService.userDetails(url).then(async (res) => {
                 // set user details in cache
-                await CACHE_SETEX_ASYNC(url, 60, JSON.stringify(res.data))
+                await CACHE_SETEX_ASYNC(url, Number(process.env.CACHE_DURATION), JSON.stringify(res.data))
                 // send cached data
                 resolve(res.data)
             }).catch(err => {
