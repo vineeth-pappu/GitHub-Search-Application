@@ -3,17 +3,17 @@
 - Search github repositories
 
 **Home Page**
-[![Home](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/home.png "Home")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/home.png")
+[![Home](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/home.png "Home")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/home.png)
 
 <br>
 
 **Users Search Results**
-[![Users](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/users.png "Home")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/users.png")
+[![Users](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/users.png "Users")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/users.png)
 
 <br>
 
 **Repositories Search Results**
-[![Repos](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/repos.png "Home")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/repos.png")
+[![Repos](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/repos.png "Repositories")](https://github.com/vineeth-pappu/GitHub-Search-Application/raw/main/design/repos.png)
 
 # Technology Stack
 - React
