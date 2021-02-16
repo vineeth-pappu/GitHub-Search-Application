@@ -1,6 +1,5 @@
 import React from 'react';
 import RepositoryCard from './RepositoryCard';
-import ErrorMessage from './ErrorMessage';
 import NoData from './NoData';
 
 function RepositoryList(props: { data: any }) {
