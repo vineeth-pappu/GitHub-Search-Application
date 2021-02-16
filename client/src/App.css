@@ -1,0 +1,246 @@
+body {
+    background: #fdfdfd;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    justify-content: center;
+}
+
+.app-wrapper.show-content {
+    display: block;
+    height: auto;
+}
+.app-wrapper.show-content header {
+    justify-content: flex-start;
+}
+.app-wrapper.show-content .filter-wrapper {
+    justify-content: flex-start;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    padding-bottom: 0;
+}
+
+.logo-wrapper {
+    width: 70px;
+}
+
+.app-title {
+    padding-left: 15px;
+    font-size: 24px;
+    line-height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.app-title h6 {
+    color: #989898;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 5px;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+.filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.search-text-input {
+    min-width: 420px;
+    margin-right: 20px;
+}
+
+.search-text-input #search {
+    padding: 15px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #c7c7c7;
+    width: 100%;
+    color: gray;
+}
+
+.search-type-input #type {
+    padding: 15px;
+    font-size: 16px;
+    color: gray;
+    border: 1px solid #c7c7c7;
+    outline: none;
+    min-width: 150px;
+    width: auto;
+}
+
+
+.search-results-skeleton-loader-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-result-skeleton {
+    width: 30%;
+    height: 200px;
+    background: gray;
+    margin: 15px;
+    border-radius: 7px;
+}
+
+.skeleton-box {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: #dddbdd;
+}
+.skeleton-box::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+  -webkit-animation: shimmer 2s infinite;
+          animation: shimmer 2s infinite;
+  content: "";
+}
+@-webkit-keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+.github-search-results-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    padding: 20px 30px;
+    box-shadow: 0px 0px 3px #80808040;
+    margin: 10px;
+    width: 25%;
+    transition: all 0.3s;
+    background-color: #fff;
+}
+
+.card:hover {
+    /* transform: scale(1.05); */
+    /* box-shadow: 0px 3px 15px #80808023; */
+    box-shadow: 0px 5px 35px #80808023;
+    transform: translateY(-8px);
+}
+
+.card-header {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.card-body {
+    color: #666;
+    font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 62px;
+}
+
+.card-footer {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-size: 14px;
+}
+
+.footer-item-icon {
+    margin-right: 8px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: #777;
+}
+
+.card-title a {
+    text-decoration: none;
+    color: #108ef1;
+}
+
+.user-profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.user-profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card-header.user-card-header {
+    display: flex;
+}
+
+.user-nickname {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #444;
+    font-weight: 600;
+}
+.user-meta-data {
+    margin-top: 5px;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.caption {
+    font-size: 12px;
+    padding-left: 3px;
+}
