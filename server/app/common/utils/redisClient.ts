@@ -8,3 +8,4 @@ export const redisClient = redis.createClient({
 
 export const CACHE_GET_ASYNC = promisify(redisClient.get).bind(redisClient)
 export const CACHE_SETEX_ASYNC = promisify(redisClient.setex).bind(redisClient)
+export const CACHE_CLEAR_ASYNC = promisify(redisClient.flushall).bind(redisClient)
