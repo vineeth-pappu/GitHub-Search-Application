@@ -29,3 +29,9 @@ Read more about Client app [here](https://github.com/vineeth-pappu/GitHub-Search
 
 **[Server](https://github.com/vineeth-pappu/GitHub-Search-Application/tree/main/server)** - contains server side Express app.
 Read more about Server app [here](https://github.com/vineeth-pappu/GitHub-Search-Application/blob/main/server/README.md)
+
+
+# Summary
+
+- Redis is used to implement server side data caching. By default data is cached for 2hrs(can be changed from the env file).
+- Redux-Persist is used to cache data on the client side. Search results are cached to prevent same api calls
