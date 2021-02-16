@@ -8,6 +8,7 @@ import RepositoryList from '../components/RepositoryList';
 import UserList from '../components/UserList';
 import { searchGithub } from '../services/githubService';
 import { MIN_SEARCH_TEXT, GITHUB_SEARCH_TYPES } from '../config/constants';
+import ErrorMessage from '../components/ErrorMessage';
 
 function GithubSearchResults() {
 
@@ -18,6 +19,7 @@ function GithubSearchResults() {
   const searchResults = useSelector(searchResultsSelector)
 
   const [data, setData] = useState({} as any)
+  const [error, setError] = useState(null as null | Error)
 
   
   useEffect(() => {
@@ -46,6 +48,7 @@ function GithubSearchResults() {
                 setData(data);
             } catch (error) {
                 console.log('search results error', error);
+                setError(error)
             }
 
             dispatch(Loading(false))
@@ -60,9 +63,11 @@ function GithubSearchResults() {
 
 
 
-  if (!searchTextFilter || searchTextFilter.length < MIN_SEARCH_TEXT) return null
+  if (searchTextFilter?.length < MIN_SEARCH_TEXT) return null
 
   if (loading) return <SearchResultsLoader />
+
+  if (error) return <ErrorMessage error={error.message} />
 
   if (searchTypeFilter === GITHUB_SEARCH_TYPES.repositories) return <RepositoryList data={data} />
 
