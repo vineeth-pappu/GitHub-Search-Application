@@ -6,7 +6,7 @@ import rootReducer, { RootState } from './reducers'
 const persistConfig = { // configuration object for redux-persist
     key: 'root',
     storage, // define which storage to use,
-    blacklist: [], // blacklist specific states
+    blacklist: ["githubSearchFilter"], // blacklist specific states
 }
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer) // create a persisted reducer
