@@ -26,8 +26,18 @@ Create a Github Personal Acess Token. Refer [here](https://docs.github.com/en/gi
 Update the personal access token in `GITHUB_ACCESS_TOKEN` in  `.env.development` 
 
 <br>
+
 **Start the app**
 
 `yarn start:dev` or `npm start:dev`
+
+
+# API - Documentation
+
+API documentation and example is present in `api-documentation` folder.
+> To test the API, install `REST Client`  VS Code extention. Refer [here](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+
+Sample response are available is `sample-response` folder
+
 
 
