@@ -1,7 +1,7 @@
 import { app } from "./app";
 import express from 'express';
 import { CommonRoutesConfig } from '../app/common/common.routes.config';
-import { GithubSearcherRoutes } from '../app/github-searcher/githubSearcher.routes.config';
+import { CacheAssemblerRoutes } from "../app/cache-assembler/cacheAssembler.routes.config";
 
 export default class Router {
 
@@ -14,7 +14,7 @@ export default class Router {
     init() {
         // here we are adding the UserRoutes to our array,
         // after sending the Express.js application object to have the routes added to our app!
-        this.routes.push(new GithubSearcherRoutes(app));
+        this.routes.push(new CacheAssemblerRoutes(app));
 
         // this is a simple route to make sure everything is working properly
         app.get('/', (req: express.Request, res: express.Response) => {
