@@ -1,6 +1,6 @@
-# GitHub-Search-Application - Server
+# Cache Assembler
 
-Express application for searching users and repositories in github with Redis cache.
+Express application with Redis cache.
 
 # Steps to run the application
 
@@ -21,9 +21,6 @@ Refer [here](https://github.com/microsoftarchive/redis) to install in windows
 Create `.env.development` file under `env` folder.<br>
 Copy the content from `env/.env.sample` and paste in `.env.development`. <br>
 
-Create a Github Personal Acess Token. Refer [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
-
-Update the personal access token in `GITHUB_ACCESS_TOKEN` in  `.env.development` 
 
 <br>
 
@@ -32,14 +29,5 @@ Update the personal access token in `GITHUB_ACCESS_TOKEN` in  `.env.development`
 Make sure `Redis` server is up and running.
 
 `yarn start:dev` or `npm start:dev`
-
-
-# API - Documentation
-
-API documentation and example is present in `api-documentation` folder.
-> To test the API, install `REST Client`  VS Code extention. Refer [here](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
-
-Sample response are available is `sample-response` folder
-
 
 
