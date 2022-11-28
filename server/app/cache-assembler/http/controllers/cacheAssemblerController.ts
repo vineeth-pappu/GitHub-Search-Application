@@ -10,22 +10,22 @@ class CacheAssemblerController extends BaseController {
     search = async (req: Request, res: Response) => {
         try {
             const url = req.url
-            const pathToCMS = url.replace(BASE_PATH, "")
     
             // check in cache
-            const dataInCache = await CACHE_GET_ASYNC(JSON.stringify(pathToCMS)) as string;
+            const dataInCache = await CACHE_GET_ASYNC(url) as string;
             if (dataInCache) {
-                console.log('\n ::: Data in Cache ::::: ', pathToCMS)
+                console.log('\n ::: Data in Cache ::::: ', url)
                 // send cached data
                 res.status(HttpResponse.HTTP_OK).send(JSON.parse(dataInCache));
                 return
             }
-            console.log('\n ::: Data NOT in Cache ::::: ', pathToCMS)
+            console.log('\n ::: Data NOT in Cache ::::: ', url)
 
+            const pathToCMS = url.replace(BASE_PATH, "")
             const { data } = await cacheAssemblerService.get(pathToCMS)
 
             // set data in cache
-            await CACHE_SETEX_ASYNC(JSON.stringify(pathToCMS), Number(process.env.CACHE_DURATION), JSON.stringify(data))
+            await CACHE_SETEX_ASYNC(url, Number(process.env.CACHE_DURATION), JSON.stringify(data))
 
             res.status(HttpResponse.HTTP_OK).send(data);
 
