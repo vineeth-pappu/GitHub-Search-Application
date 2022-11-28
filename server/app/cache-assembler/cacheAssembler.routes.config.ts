@@ -7,6 +7,7 @@ import HttpResponse from '../common/facades/httpResponse';
 import CacheAssemblerController from './http/controllers/cacheAssemblerController';
 
 const cacheAssemblerController = new CacheAssemblerController();
+export const BASE_PATH = '/cache-assembler';
 export class CacheAssemblerRoutes extends CommonRoutesConfig {
 
     constructor(app: express.Application) {
@@ -14,13 +15,14 @@ export class CacheAssemblerRoutes extends CommonRoutesConfig {
     }
 
     configureRoutes() {
-        this.app.route(`/cache-assembler`)
-            .get(cacheAssemblerRequestValidator(), validate, cacheAssemblerController.search)
 
-        this.app.route(`/clear-cache`).get(async (req: Request, res: Response) => {
+        this.app.route(`${BASE_PATH}/clear-cache`).get(async (req: Request, res: Response) => {
             await CACHE_CLEAR_ASYNC()
             res.status(HttpResponse.HTTP_OK).send("Cache cleared");
         })
+        
+        this.app.route(`${BASE_PATH}/*`)
+            .all(cacheAssemblerRequestValidator(), validate, cacheAssemblerController.search)
 
         return this.app;
     }

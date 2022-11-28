@@ -1,10 +1,11 @@
 import bodyParser from '../middleware/bodyparser'
 import cors from '../middleware/cors'
-import { logger } from "../middleware/expressWinston";
+import { logger, errorLogger } from "../middleware/expressWinston";
 
 
 export default () => {
     bodyParser();
     cors();
-    logger();
+    // logger();
+    // errorLogger();
 }

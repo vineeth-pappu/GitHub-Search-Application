@@ -33,10 +33,6 @@ export default class Server {
     private start() {
         this.server.listen(this.port, () => {
             debugLog(`Server running at ${this.host}:${this.port}`);
-
-            this.router.routes.forEach((route: CommonRoutesConfig) => {
-                debugLog(`Routes configured for ${route.getName()}`);
-            });
         });
     }
 }
