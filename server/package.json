@@ -1,7 +1,7 @@
 {
     "name": "server",
     "version": "1.0.0",
-    "description": "GitHub-Searcher service",
+    "description": "cache assembler service",
     "main": "index.js",
     "scripts": {
         "start": "tsc && node ./dist/start",

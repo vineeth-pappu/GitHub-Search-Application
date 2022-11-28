@@ -1,12 +1,12 @@
 import httpClient from '../../common/utils/httpClient'
 
-const CMS_DOMAIN = "http://localhost:3000";
 class CacheAssemblerService {
 
     constructor() {
     }
 
     get(query: any) {
+        const CMS_DOMAIN = process.env.CMS_DOMAIN;
         return httpClient.get(`${CMS_DOMAIN}${query}`, {
             method: 'GET',
         })
